@@ -1,0 +1,20 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var CategorySchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  isMain: {
+    type: Boolean,
+    require: true
+  },
+  CategoryUrl: String
+});
+
+module.exports = mongoose.model('category', CategorySchema);

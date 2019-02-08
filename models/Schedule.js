@@ -33,4 +33,4 @@ var ScheduleSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('information', ScheduleSchema);
+module.exports = mongoose.model('schedule', ScheduleSchema);

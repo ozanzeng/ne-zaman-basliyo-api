@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = () => {
-  mongoose.connect('mongodb://nzb_user:abc123@ds121295.mlab.com:21295/nzb-api', { useMongoClient: true })
+  mongoose.connect('mongodb://nzb_user:abc123@ds121295.mlab.com:21295/nzb-api', { useNewUrlParser: true })
 
   mongoose.connection.on('open', () => {
     console.log('MongoDB: Connected');
