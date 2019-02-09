@@ -13,8 +13,7 @@ var CategorySchema = new Schema({
   isMain: {
     type: Boolean,
     require: true
-  },
-  CategoryUrl: String
+  }
 });
 
 module.exports = mongoose.model('category', CategorySchema);
