@@ -4,39 +4,15 @@ const router = express.Router();
 // Models
 const Schedule = require('../models/Schedule');
 
-
 // List all schedule
-router.get('/', (req, res) => {
+router.get('/all', (req, res, next) => {
   const promise = Schedule.find({});
 
   promise.then(data => {
-    res.json(data);
-  }).catch(err => {
-    res.json(err);
-  });
-});
-
-// Get the top10 schedules.
-router.get('/top10', (req, res) => {
-  const promise = Schedule.find({}).limit(10).sort({viewCount: -1});
-
-  promise.then(data => {
-    res.json(data);
-  }).catch(err => {
-    res.json(err);
-  });
-});
-
-
-// Get a schedule 
-router.get('/:schedule_id', (req, res, next) => {
-  const promise = Schedule.findById(req.params.schedule_id);
-
-  promise.then(data => {
     if (!data) {
       next({
-        message: 'Üzgünüz, içerik bulunamadı.',
-        code: 4000
+        message: 'Üzgünüz içerik bulunamadı.',
+        code: 4000,
       });
     }
     res.json(data);
@@ -45,26 +21,19 @@ router.get('/:schedule_id', (req, res, next) => {
   });
 });
 
-// Delete a schedule
-router.delete('/:schedule_id', (req, res, next) => {
-  const promise = Schedule.findByIdAndDelete(req.params.schedule_id);
+// Top x list
+router.get('/top/:top_number', (req, res) => {
+  const promise = Schedule.find({}).limit(req.params.schedule_id).sort({ viewCount: -1 });
 
   promise.then(data => {
-    if (!data) {
-      next({
-        message: 'Üzgünüz, içerik bulunamadı.',
-        code: 4000
-      });
-    }
-    res.json({ status: 1});
+    res.json(data);
   }).catch(err => {
     res.json(err);
   });
 });
 
-
-// Update a schedule with new info.
-router.put('/:schedule_id', (req, res, next) => {
+// Update a category with new info.
+router.put('/update/:schedule_id', (req, res, next) => {
   const promise = Schedule.findByIdAndUpdate(
     req.params.schedule_id,
     req.body,
@@ -74,7 +43,7 @@ router.put('/:schedule_id', (req, res, next) => {
   promise.then(data => {
     if (!data) {
       next({
-        message: 'Üzgünüz, içerik bulunamadı.',
+        message: 'Üzgünüz içerik bulunamadı.',
         code: 4001
       });
     }
@@ -84,31 +53,18 @@ router.put('/:schedule_id', (req, res, next) => {
   });
 });
 
-
-// Cerate a new schedule.
-router.post('/', function (req, res, next) {
-  const { title, description, image, startDate, createAt, pageUrl, updateAt, viewCount, isActive } = req.body;
-  const schedule = new Schedule(req.body);
-  const promise = schedule.save();
-
-  promise.then(() => {
-    res.json({ status: 1 });
-  }).catch(err => {
-    res.json(err);
-  });
-});
-
-// Get the top10 schedules.
-router.get('/between/:start_count/:end_count', (req, res) => {
-  const { start_count, end_count } = req.params;
-  const promise = Movie.find( 
-    {
-      year: { '$gte': parseInt(start_count), '$lte': parseInt(end_count) }
-    }
-  )
+// Delete a category
+router.delete('/delete/:category_id', (req, res, next) => {
+  const promise = Schedule.findByIdAndDelete(req.params.category_id);
 
   promise.then(data => {
-    res.json(data);
+    if (!data) {
+      next({
+        message: 'Üzgünüz içerik bulunamadı.',
+        code: 4003
+      });
+    }
+    res.json({ status: 1});
   }).catch(err => {
     res.json(err);
   });
