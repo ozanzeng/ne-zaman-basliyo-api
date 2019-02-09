@@ -4,15 +4,15 @@ var Schema = mongoose.Schema;
 var ScheduleDetailSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
   description: {
     type: String,
-    required: true
+    required: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
   article: {
     type: String,
-    required: true
+    required: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
   imageUrl: {
     type: String,
@@ -22,11 +22,13 @@ var ScheduleDetailSchema = new Schema({
   startDate: Date,
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    min: Date.now
   },
   updateAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    min: Date.now
   }
 });
 

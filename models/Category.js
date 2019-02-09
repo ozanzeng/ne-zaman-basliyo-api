@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 var CategorySchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
   isMain: {
     type: Boolean,
-    require: true
+    require: [true, '`{PATH}` alanı boş bırakılamaz.']
   }
 });
 

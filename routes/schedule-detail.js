@@ -5,7 +5,7 @@ const router = express.Router();
 const Schedule = require('../models/Schedule');
 const ScheduleDetail = require('../models/ScheduleDetail');
 
-// List all schedule
+// List all schedule-detail
 router.get('/all', (req, res, next) => {
   const promise = ScheduleDetail.find({});
 
@@ -22,7 +22,7 @@ router.get('/all', (req, res, next) => {
   });
 });
 
-// Create a new schedule
+// Create a new schedule & schedule detail.
 router.post('/create', function (req, res, next) {
   const scheuleDetail = new ScheduleDetail(req.body);
 
