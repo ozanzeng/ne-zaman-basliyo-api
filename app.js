@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/register', indexRouter);
 app.use('/web-api/schedule', scheduleRouter);
 app.use('/web-api/schedule-detail', scheduleDetailRouter);
 app.use('/web-api/category', categoryRouter);

@@ -25,7 +25,7 @@ router.get('/all', (req, res, next) => {
 // Create a new schedule & schedule detail.
 router.post('/create', function (req, res, next) {
   const scheuleDetail = new ScheduleDetail(req.body);
-
+  // Collection yoksa oluştur, kontrolü yapılmalı.
   scheuleDetail.save((err, result) => {
     const scheduleTableResultData = {
       category_id: req.body.category_id,
@@ -44,14 +44,20 @@ router.post('/create', function (req, res, next) {
   function saveSchedue(data) {
     const schedule = new Schedule(data);
 
+    console.log(data);
+
     schedule.save((err, result) => {
       if (err) {
         next({
-          message: 'Üzgünüz içerik eklenemedi.',
+          message: 'Üzgünüz içerik eklenemedi. 2',
           code: 9999,
         });
       } else {
-        response = { id: result._id, message: "İçerik başarıyla eklendi.", code: 2000 };
+        response = {
+          id: result._id,
+          message: "İçerik başarıyla eklendi.",
+          code: 2000
+        };
       }
       res.json(response);
     });
