@@ -7,7 +7,7 @@ const ScheduleDetail = require('../models/ScheduleDetail');
 
 // Get schedule detail
 router.get('/schedule-detail/:schedule_detail_id', (req, res, next) => {
-  const promise = ScheduleDetail.findById(req.params.schedule_detail_id);
+  const promise = ScheduleDetail.findById(req.params._id);
 
   promise.then(data => {
     if (!data) {
