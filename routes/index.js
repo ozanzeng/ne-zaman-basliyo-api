@@ -32,7 +32,7 @@ router.post('/register', (req, res, next) => {
 });
 
 /* GET Authentication */
-router.post('/', (req, res) => {
+router.post('/authentication', (req, res) => {
   const { username, password } = req.body;
 
   User.findOne({
