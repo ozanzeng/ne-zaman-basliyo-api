@@ -22,23 +22,6 @@ router.get('/schedule-detail/:schedule_detail_id', (req, res) => {
   });
 });
 
-// List all schedule-detail
-router.get('/all', (req, res, next) => {
-  const promise = ScheduleDetail.find({});
-
-  promise.then(data => {
-    if (!data) {
-      next({
-        message: 'Üzgünüz içerik bulunamadı.',
-        code: 4001
-      });
-    }
-    res.json(data);
-  }).catch(err => {
-    res.json(err);
-  });
-});
-
 // Create a new schedule & schedule detail.
 router.post('/create', function (req, res, next) {
   const scheuleDetail = new ScheduleDetail(req.body);
@@ -78,5 +61,24 @@ router.post('/create', function (req, res, next) {
     });
   }
 });
+
+
+// List all schedule-detail
+router.get('/all', (req, res, next) => {
+  const promise = ScheduleDetail.find({});
+
+  promise.then(data => {
+    if (!data) {
+      next({
+        message: 'Üzgünüz içerik bulunamadı.',
+        code: 4001
+      });
+    }
+    res.json(data);
+  }).catch(err => {
+    res.json(err);
+  });
+});
+
 
 module.exports = router;
