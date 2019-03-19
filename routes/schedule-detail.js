@@ -22,6 +22,25 @@ router.get('/all', (req, res, next) => {
   });
 });
 
+
+// Get schedule detail
+router.get('/schedule-detail/:schedule_id', (req, res) => {
+  const promise = Schedule.find({}).limit(req.params.schedule_id).sort({ viewCount: -1 });
+
+  promise.then(data => {
+    if (!data) {
+      next({
+        message: 'Üzgünüz içerik bulunamadı.',
+        code: 9999,
+      });
+    }
+    res.json(data);
+  }).catch(err => {
+    res.json(err);
+  });
+});
+
+
 // Create a new schedule & schedule detail.
 router.post('/create', function (req, res, next) {
   const scheuleDetail = new ScheduleDetail(req.body);
@@ -43,9 +62,7 @@ router.post('/create', function (req, res, next) {
 
   function saveSchedue(data) {
     const schedule = new Schedule(data);
-
-    console.log(data);
-
+    
     schedule.save((err, result) => {
       if (err) {
         next({
