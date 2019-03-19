@@ -25,7 +25,7 @@ router.get('/all', (req, res, next) => {
 
 // Get schedule detail
 router.get('/schedule-detail/:schedule_id', (req, res) => {
-  const promise = Schedule.find({}).limit(req.params.schedule_id).sort({ viewCount: -1 });
+  const promise = Schedule.findById(req.params.schedule_id);
 
   promise.then(data => {
     if (!data) {
