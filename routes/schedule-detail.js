@@ -7,16 +7,21 @@ const ScheduleDetail = require('../models/ScheduleDetail');
 
 // Get schedule detail
 router.get('/schedule-detail/:schedule_detail_id', (req, res, next) => {
-  const promise = ScheduleDetail.findById(req.params._id);
+  const promise = ScheduleDetail.findById(req.params.schedule_detail_id);
 
   promise.then(data => {
     if (!data) {
       next({
         message: 'Üzgünüz içerik bulunamadı.',
-        code: 9999,
+        code: 2000,
       });
+    } else {
+      response = {
+        data,
+        code: 2000
+      };
     }
-    res.json(data);
+    res.json(response);
   }).catch(err => {
     res.json(err);
   });
