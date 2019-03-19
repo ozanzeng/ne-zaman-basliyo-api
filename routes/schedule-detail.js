@@ -10,6 +10,7 @@ router.get('/schedule-detail/:schedule_detail_id', (req, res, next) => {
   const promise = ScheduleDetail.findById(req.params.schedule_detail_id);
 
   promise.then(data => {
+    console.log(data);
     if (!data) {
       next({
         message: 'Üzgünüz içerik bulunamadı.',
