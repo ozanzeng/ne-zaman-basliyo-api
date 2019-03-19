@@ -54,11 +54,9 @@ router.post('/authentication', (req, res) => {
               message: 'Giriş hatalı, şifre hatalı.'
             });
           } else {
-            const payload = {
-              username
-            };
-            const token = jwn.sign(payload, req.app.get('api_secret_key'), {
-              expiresIn: 720 // 12 saat
+            const payload = { username };
+            const token = jwt.sign(payload, req.app.get('api_secret_key'), {
+              expiresIn: 720 // 12 hours.
             });
 
             res.json({
