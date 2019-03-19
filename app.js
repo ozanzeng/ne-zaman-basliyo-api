@@ -12,7 +12,11 @@ var categoryRouter = require('./routes/category');
 var app = express();
 
 // DB Connection
-var db = require('./helper/db')();
+const db = require('./helper/db')();
+
+// Config
+const config = require('./config.js');
+app.set('api_secret_key', config.api_secret_key)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
