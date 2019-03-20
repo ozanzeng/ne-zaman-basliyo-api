@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/web-api', verifyToken);
+// app.use('/web-api', verifyToken);
 app.use('/register', indexRouter);
 app.use('/web-api/schedule', scheduleRouter);
 app.use('/web-api/schedule-detail', scheduleDetailRouter);
