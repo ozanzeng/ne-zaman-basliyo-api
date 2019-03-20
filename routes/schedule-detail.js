@@ -5,6 +5,23 @@ const router = express.Router();
 const Schedule = require('../models/Schedule');
 const ScheduleDetail = require('../models/ScheduleDetail');
 
+// List all schedule-detail
+router.get('/all', (req, res, next) => {
+  const promise = ScheduleDetail.find({});
+
+  promise.then(data => {
+    if (!data) {
+      next({
+        message: 'Üzgünüz içerik bulunamadı.',
+        code: 4001
+      });
+    }
+    res.json(data);
+  }).catch(err => {
+    res.json(err);
+  });
+});
+
 // Get schedule detail
 router.get('/:schedule_detail_id', (req, res, next) => {
   const promise = ScheduleDetail.findById(req.params.schedule_detail_id);
@@ -60,24 +77,6 @@ router.post('/create', function (req, res, next) {
       res.json(response);
     });
   }
-});
-
-
-// List all schedule-detail
-router.get('/all', (req, res, next) => {
-  const promise = ScheduleDetail.find({});
-
-  promise.then(data => {
-    if (!data) {
-      next({
-        message: 'Üzgünüz içerik bulunamadı.',
-        code: 4001
-      });
-    }
-    res.json(data);
-  }).catch(err => {
-    res.json(err);
-  });
 });
 
 
