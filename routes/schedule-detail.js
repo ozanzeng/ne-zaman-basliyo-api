@@ -23,7 +23,7 @@ router.get('/all', (req, res, next) => {
 });
 
 // Get schedule detail
-router.get('/:schedule_detail_id', (req, res, next) => {
+router.get('/detail/:schedule_detail_id', (req, res, next) => {
   const promise = ScheduleDetail.findById(req.params.schedule_detail_id);
 
   promise.then(data => {
