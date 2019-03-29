@@ -1,15 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var scheduleRouter = require('./routes/schedule');
-var scheduleDetailRouter = require('./routes/schedule-detail');
-var categoryRouter = require('./routes/category');
-
-var app = express();
+const indexRouter = require('./routes/index');
+const scheduleRouter = require('./routes/schedule');
+const scheduleDetailRouter = require('./routes/schedule-detail');
+const categoryRouter = require('./routes/category');
+const cors = require('cors')
+const app = express();
 
 // DB Connection
 const db = require('./helper/db')();
@@ -25,6 +25,7 @@ const verifyToken = require('./middleware/verify-token');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,27 +34,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 // app.use('/web-api', verifyToken);
-app.use('/register', indexRouter);
+app.use('/register', indexRouter, );
 app.use('/web-api/schedule', scheduleRouter);
 app.use('/web-api/schedule-detail', scheduleDetailRouter);
 app.use('/web-api/category', categoryRouter);
 
 
 app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect exp: http://localhost:8888
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
   // catch 404 and forward to error handler and pass to next layer of middleware
   next(createError(404));
 });
