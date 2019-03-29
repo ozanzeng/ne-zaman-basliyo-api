@@ -11,7 +11,11 @@ var CategorySchema = new Schema({
     require: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
   position: {
-    type: String,
+    type: Number,
+    require: [true, '`{PATH}` alanı boş bırakılamaz.']
+  },
+  line: {
+    type: Number,
     require: [true, '`{PATH}` alanı boş bırakılamaz.']
   }
 });
