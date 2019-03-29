@@ -9,6 +9,10 @@ var CategorySchema = new Schema({
   isMain: {
     type: Boolean,
     require: [true, '`{PATH}` alanı boş bırakılamaz.']
+  },
+  position: {
+    type: String,
+    require: [true, '`{PATH}` alanı boş bırakılamaz.']
   }
 });
 
