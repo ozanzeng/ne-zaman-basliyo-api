@@ -1,0 +1,98 @@
++ Table menu {
+  id int [pk]
+  mainMenu_id int [not null]
+  menuPosition_id int [not null]
+  category_id int [not null]
+  title varchar
+  isActive boolean
+}
+
++ Table menuPosition {
+  id int [pk]
+  title varchar
+}
+
++ Table category { 
+  id int [pk]
+  title varchar
+  mainCategory_id int
+  line int
+  isActive boolean
+}
+
++ Table user {
+  id int [pk]
+  userPermition_id int [not null]
+  userDetail_id int [not null]
+  username varchar
+  password varchar
+  lastLogin datetime
+  isActive boolean
+}
+
++ Table userPermition {
+  id int [pk]
+  title varchar
+}
+
++ Table userDetail {
+  id int [pk]
+  firstName varchar
+  lastName varchar
+  registerAt date
+}
+
++ Table article {
+  id int [pk]
+  category_id int [not null]
+  menu_id int [not null]
+  user_id int [not null]
+  articleDetail_id int [not null]
+  isActive boolean
+}
+
++ Table articleDetail {
+  id int [pk]
+  template_id int [not null]
+  title varchar
+  description varchar
+  content varchar
+  articleImageUrl varchar
+  pageUrl varchar
+  startDate datetime
+  endDate datetime
+  viewCount int
+  creatAt date
+  updateAt date
+}
+
++ Table template {
+  id int [pk]
+  title varchar
+  backgroundImgUrl varchar
+  isActive boolean
+}
+
++ Table settings {
+  pageTitle varchar 
+  copyright varchar
+  logoImgUrl varchar
+  facebook varchar
+  instagram varchar
+  twitter varchar
+  isActive boolean
+}
+
+// Relations
+
+Ref: menu.mainMenu_id > menu.id
+Ref: menu.menuPosition_id > menuPosition.id
+Ref: menu.category_id > category.id
+Ref: category.mainCategory_id > category.id
+Ref: user.userPermition_id > userPermition.id
+Ref: user.userDetail_id > userDetail.id
+Ref: article.category_id > category.id
+Ref: article.menu_id > menu.id
+Ref: article.user_id > user.id
+Ref: article.articleDetail_id > articleDetail.id
+Ref: articleDetail.template_id > template.id

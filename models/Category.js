@@ -2,22 +2,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CategorySchema = new Schema({
-  title: {
-    type: String,
+  mainCategory_id: {
+    type: Number,
     required: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
-  isMain: {
-    type: Boolean,
-    require: [true, '`{PATH}` alanı boş bırakılamaz.']
+  title: {
+    type: String,
+    unique: true
   },
-  position: {
-    type: Number,
-    require: [true, '`{PATH}` alanı boş bırakılamaz.']
-  },
-  line: {
-    type: Number,
-    require: [true, '`{PATH}` alanı boş bırakılamaz.']
-  }
+  line: Number,
+  isActive: Boolean,
+  // position: {
+  //   type: Number,
+  //   require: [true, '`{PATH}` alanı boş bırakılamaz.']
+  // },
 });
 
 module.exports = mongoose.model('category', CategorySchema);
