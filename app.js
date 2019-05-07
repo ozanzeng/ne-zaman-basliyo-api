@@ -5,9 +5,17 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const scheduleRouter = require('./routes/schedule');
-const scheduleDetailRouter = require('./routes/schedule-detail');
-const categoryRouter = require('./routes/category');
+const menuRouter = require('./routes/Menu');
+const menuPositionRouter = require('./routes/MenuPosition');
+const categoryRouter = require('./routes/Category');
+const userRouter = require('./routes/User');
+const userPermitionRouter = require('./routes/UserPermition');
+const userDetailRouter = require('./models/UserDetail');
+const articleRouter = require('./routes/Article');
+const articleDetailRouter = require('./routes/ArticleDetail');
+const templateRouter = require('./routes/Template');
+const settingsRouter = require('./routes/Settings');
+
 const cors = require('cors')
 const app = express();
 
@@ -32,12 +40,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routers
 app.use('/', indexRouter);
 // app.use('/web-api', verifyToken);
-app.use('/register', indexRouter, );
-app.use('/web-api/schedule', scheduleRouter);
-app.use('/web-api/schedule-detail', scheduleDetailRouter);
+app.use('/register', indexRouter);
+// APIs
+app.use('/web-api/menu', menuRouter);
+app.use('/web-api/menuPosition', menuPositionRouter);
 app.use('/web-api/category', categoryRouter);
+app.use('/web-api/user', userRouter);
+app.use('/web-api/userPermition', userPermitionRouter);
+app.use('/web-api/userDetail', userDetailRouter);
+app.use('/web-api/aricle', articleRouter);
+app.use('/web-api/aricleDetail', articleDetailRouter);
+app.use('/web-api/template', templateRouter);
+app.use('/web-api/settings', settingsRouter);
 
 
 app.use(function (req, res, next) {

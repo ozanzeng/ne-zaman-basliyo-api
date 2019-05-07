@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const Category = require('../models/Category');
+const MenuPosition = require('../models/MenuPosition');
 
-// Get: List all category.
+// Get: List all menu position.
 router.get('/list/all', (req, res) => {
-  const promise = Category.find({});
+  const promise = MenuPosition.find({});
 
   promise.then(data => {
     if (!data) {
@@ -21,9 +21,9 @@ router.get('/list/all', (req, res) => {
   });
 });
 
-// Delete: Delete a category
-router.delete('/delete/:category_id', (req, res, next) => {
-  const promise = Category.findByIdAndDelete(req.params.category_id);
+// Delete: Delete a menu position
+router.delete('/delete/:menuPosition_id', (req, res, next) => {
+  const promise = MenuPosition.findByIdAndDelete(req.params.menuPosition_id);
 
   promise.then(data => {
     if (!data) {
@@ -38,10 +38,10 @@ router.delete('/delete/:category_id', (req, res, next) => {
   });
 });
 
-// Put: Update a category with new info.
-router.put('/update/:category_id', (req, res, next) => {
-  const promise = Category.findByIdAndUpdate(
-    req.params.category_id,
+// Put: Update a menu position with new info.
+router.put('/update/:menuPosition_id', (req, res, next) => {
+  const promise = MenuPosition.findByIdAndUpdate(
+    req.params.menuPosition_id,
     req.body,
     {new: true}
   );
@@ -59,10 +59,10 @@ router.put('/update/:category_id', (req, res, next) => {
   });
 });
 
-// Post: Create a new category.
+// Post: Create a new menu position.
 router.post('/create', function (req, res, next) {
-  const category = new Category(req.body);
-  const promise = category.save();
+  const menuPosition = new MenuPosition(req.body);
+  const promise = menuPosition.save();
 
   promise.then(() => {
     res.json({ status: 1, message: 'İşlem başarıyla kaydedildi.' });

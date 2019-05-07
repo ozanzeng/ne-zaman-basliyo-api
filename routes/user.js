@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const Category = require('../models/Category');
+const User = require('../models/User');
 
-// Get: List all category.
+// Get: List all user.
 router.get('/list/all', (req, res) => {
-  const promise = Category.find({});
+  const promise = User.find({});
 
   promise.then(data => {
     if (!data) {
@@ -21,9 +21,9 @@ router.get('/list/all', (req, res) => {
   });
 });
 
-// Delete: Delete a category
-router.delete('/delete/:category_id', (req, res, next) => {
-  const promise = Category.findByIdAndDelete(req.params.category_id);
+// Delete: Delete a user
+router.delete('/delete/:user_id', (req, res, next) => {
+  const promise = User.findByIdAndDelete(req.params.user_id);
 
   promise.then(data => {
     if (!data) {
@@ -38,10 +38,10 @@ router.delete('/delete/:category_id', (req, res, next) => {
   });
 });
 
-// Put: Update a category with new info.
-router.put('/update/:category_id', (req, res, next) => {
-  const promise = Category.findByIdAndUpdate(
-    req.params.category_id,
+// Put: Update a user with new info.
+router.put('/update/:user_id', (req, res, next) => {
+  const promise = User.findByIdAndUpdate(
+    req.params.user_id,
     req.body,
     {new: true}
   );
@@ -59,10 +59,10 @@ router.put('/update/:category_id', (req, res, next) => {
   });
 });
 
-// Post: Create a new category.
+// Post: Create a new user.
 router.post('/create', function (req, res, next) {
-  const category = new Category(req.body);
-  const promise = category.save();
+  const User = new User(req.body);
+  const promise = user.save();
 
   promise.then(() => {
     res.json({ status: 1, message: 'İşlem başarıyla kaydedildi.' });

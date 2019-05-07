@@ -1,4 +1,4 @@
-+ Table menu {
+Table menu {
   id int [pk]
   mainMenu_id int [not null]
   menuPosition_id int [not null]
@@ -7,12 +7,12 @@
   isActive boolean
 }
 
-+ Table menuPosition {
+Table menuPosition {
   id int [pk]
   title varchar
 }
 
-+ Table category { 
+Table category { 
   id int [pk]
   title varchar
   mainCategory_id int
@@ -20,7 +20,7 @@
   isActive boolean
 }
 
-+ Table user {
+Table user {
   id int [pk]
   userPermition_id int [not null]
   userDetail_id int [not null]
@@ -30,19 +30,19 @@
   isActive boolean
 }
 
-+ Table userPermition {
+Table userPermition {
   id int [pk]
   title varchar
 }
 
-+ Table userDetail {
+Table userDetail {
   id int [pk]
   firstName varchar
   lastName varchar
   registerAt date
 }
 
-+ Table article {
+Table article {
   id int [pk]
   category_id int [not null]
   menu_id int [not null]
@@ -51,7 +51,7 @@
   isActive boolean
 }
 
-+ Table articleDetail {
+Table articleDetail {
   id int [pk]
   template_id int [not null]
   title varchar
@@ -66,14 +66,14 @@
   updateAt date
 }
 
-+ Table template {
+Table template {
   id int [pk]
   title varchar
   backgroundImgUrl varchar
   isActive boolean
 }
 
-+ Table settings {
+Table settings {
   pageTitle varchar 
   copyright varchar
   logoImgUrl varchar

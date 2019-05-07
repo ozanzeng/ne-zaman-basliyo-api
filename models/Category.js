@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var CategorySchema = new Schema({
   mainCategory_id: {
     type: Number,
+    default: 0,
     required: [true, '`{PATH}` alanı boş bırakılamaz.']
   },
   title: {

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const Category = require('../models/Category');
+const Menu = require('../models/Menu');
 
-// Get: List all category.
+// Get: List all menu.
 router.get('/list/all', (req, res) => {
-  const promise = Category.find({});
+  const promise = Menu.find({});
 
   promise.then(data => {
     if (!data) {
@@ -21,9 +21,9 @@ router.get('/list/all', (req, res) => {
   });
 });
 
-// Delete: Delete a category
-router.delete('/delete/:category_id', (req, res, next) => {
-  const promise = Category.findByIdAndDelete(req.params.category_id);
+// Delete: Delete a menu
+router.delete('/delete/:menu_id', (req, res, next) => {
+  const promise = Menu.findByIdAndDelete(req.params.menu_id);
 
   promise.then(data => {
     if (!data) {
@@ -38,10 +38,10 @@ router.delete('/delete/:category_id', (req, res, next) => {
   });
 });
 
-// Put: Update a category with new info.
-router.put('/update/:category_id', (req, res, next) => {
-  const promise = Category.findByIdAndUpdate(
-    req.params.category_id,
+// Put: Update a menu with new info.
+router.put('/update/:menu_id', (req, res, next) => {
+  const promise = Menu.findByIdAndUpdate(
+    req.params.menu_id,
     req.body,
     {new: true}
   );
@@ -59,10 +59,10 @@ router.put('/update/:category_id', (req, res, next) => {
   });
 });
 
-// Post: Create a new category.
+// Post: Create a new menu.
 router.post('/create', function (req, res, next) {
-  const category = new Category(req.body);
-  const promise = category.save();
+  const menu = new Menu(req.body);
+  const promise = menu.save();
 
   promise.then(() => {
     res.json({ status: 1, message: 'İşlem başarıyla kaydedildi.' });

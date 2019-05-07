@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var MenuSchema = new Schema({
+const MenuSchema = new Schema({
   mainMenu_id: {
     type: Number,
     required: [true, '`{PATH}` alanı boş bırakılamaz.']
